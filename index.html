@@ -601,7 +601,7 @@
         
         if (!isOpen) return null;
 
-        const isFormInvalid = !formData.name.trim() || !formData.phone.trim() || (deliveryMethod === 'delivery' && !formData.address.trim());
+        const isFormInvalid = !formData.name.trim() || !/^\d{10}$/.test(formData.phone) || (deliveryMethod === 'delivery' && !formData.address.trim());
 
         return (
           <div className="fixed inset-0 bg-brand-bg z-[60] flex flex-col" role="dialog" aria-modal="true">
@@ -621,8 +621,20 @@
                       <input type="text" name="name" id="name" required className="w-full px-3 py-2 bg-brand-card border border-stone-300 rounded-md focus:ring-brand-accent focus:border-brand-accent" onChange={handleChange} value={formData.name} />
                     </div>
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-brand-text-light mb-1">Teléfono</label>
-                      <input type="tel" name="phone" id="phone" required className="w-full px-3 py-2 bg-brand-card border border-stone-300 rounded-md focus:ring-brand-accent focus:border-brand-accent" onChange={handleChange} value={formData.phone} />
+                      <label htmlFor="phone" className="block text-sm font-medium text-brand-text-light mb-1">Teléfono (sólo 10 dígitos)</label>
+                      <input 
+                        type="tel" 
+                        name="phone" 
+                        id="phone" 
+                        required 
+                        className="w-full px-3 py-2 bg-brand-card border border-stone-300 rounded-md focus:ring-brand-accent focus:border-brand-accent" 
+                        onChange={handleChange} 
+                        value={formData.phone}
+                        pattern="\d{10}"
+                        maxLength="10"
+                        title="Ingresa 10 dígitos. Ej: 3644921028 (sin 0 ni 15)"
+                        placeholder="3644921028"
+                      />
                     </div>
                   </div>
                 </div>
