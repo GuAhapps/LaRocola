@@ -89,21 +89,21 @@
         const minutes = nowArgentina.getMinutes();
         const currentTime = hours + minutes / 60;
 
-        const middayOpen = 11.5; // 11:30 hs
-        const middayClose = 14.5; // 14:30 hs
+        const middayOpen = 11; // 11:00 hs
+        const middayClose = 15; // 15:00 hs
 
-        const nightOpen = 19.5; // 19:30 hs
-        const nightClose = 1.5; // 01:30 hs
+        const nightOpen = 20; // 20:00 hs
+        const nightClose = 0.5; // 00:30 hs
 
         let isOpen = false;
         let message = '';
 
         if (shift === 'midday') {
             isOpen = currentTime >= middayOpen && currentTime < middayClose;
-            message = isOpen ? '¡Estamos abiertos para almuerzos!' : 'Cerrado. Horario de almuerzo: 11:30 a 14:30 hs.';
+            message = isOpen ? '¡Estamos abiertos para almuerzos!' : 'Cerrado. Horario de almuerzo: 11:00 a 15:00 hs.';
         } else if (shift === 'night') {
             isOpen = currentTime >= nightOpen || currentTime < nightClose;
-            message = isOpen ? '¡Estamos abiertos para la cena!' : 'Cerrado. Horario de cena: 19:30 a 01:30 hs.';
+            message = isOpen ? '¡Estamos abiertos para la cena!' : 'Cerrado. Horario de cena: 20:00 a 00:30 hs.';
         }
 
         return { isOpen, message };
@@ -123,13 +123,14 @@
         Bebidas: 'Bebidas',
       };
 
-      const pastaImage = 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=1974&auto=format&fit=crop';
-      const platoImage = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCFPRRRU9eQwzJIL49rm_ouCPQdfiupCSSyMalR9Lmm-C04Gy09ag96E2wLTdZ3fe98SQ&usqp=CAU';
-      const sangucheImage = 'https://media-cdn.tripadvisor.com/media/photo-s/08/af/fe/20/definitivamente-los-sanguches.jpg';
-      const empanadaImage = 'https://cocinerosargentinos.com/content/recipes/original/recipes.12223.jpeg';
-      const pizzaImage = 'https://breaders.com.ar/web/wp-content/uploads/2022/01/pizzas-napolitana-1200x900.jpg';
-      const burgerImage = 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?q=80&w=2072&auto=format&fit=crop';
-      const friesImage = 'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?q=80&w=2070&auto=format&fit=crop';
+      const pastaImage = 'https://ia903208.us.archive.org/16/items/sin-titulo-7-mesa-de-trabajo-1-copia-6/Sin%20t%C3%ADtulo-7_Mesa%20de%20trabajo%201%20copia%205.png';
+      const platoImage = 'https://ia903208.us.archive.org/16/items/sin-titulo-7-mesa-de-trabajo-1-copia-6/Sin%20t%C3%ADtulo-7_Mesa%20de%20trabajo%201%20copia%206.png';
+      const sangucheImage = 'https://ia903208.us.archive.org/16/items/sin-titulo-7-mesa-de-trabajo-1-copia-6/Sin%20t%C3%ADtulo-7_Mesa%20de%20trabajo%201%20copia%202.png';
+      const empanadaImage = 'https://ia903208.us.archive.org/16/items/sin-titulo-7-mesa-de-trabajo-1-copia-6/Sin%20t%C3%ADtulo-7_Mesa%20de%20trabajo%201%20copia%204.png';
+      const pizzaImage = 'https://ia903208.us.archive.org/16/items/sin-titulo-7-mesa-de-trabajo-1-copia-6/Sin%20t%C3%ADtulo-7_Mesa%20de%20trabajo%201%20copia.png';
+      const burgerImage = 'https://ia903208.us.archive.org/16/items/sin-titulo-7-mesa-de-trabajo-1-copia-6/Sin%20t%C3%ADtulo-7_Mesa%20de%20trabajo%201.png';
+      const friesImage = 'https://ia903208.us.archive.org/16/items/sin-titulo-7-mesa-de-trabajo-1-copia-6/Sin%20t%C3%ADtulo-7_Mesa%20de%20trabajo%201%20copia%203.png';
+      const bebidaImage = 'https://ia903208.us.archive.org/16/items/sin-titulo-7-mesa-de-trabajo-1-copia-6/Sin%20t%C3%ADtulo-7_Mesa%20de%20trabajo%201%20copia%207.png';
 
       const menuItems = [
         // === MEDIODÍA ===
@@ -190,6 +191,30 @@
         { id: 'h2', name: 'Hamburguesa Completa', price: 8000, category: Category.Hamburguesas, shift: 'night', imageUrls: [burgerImage], description: '', ingredients: [], prepTime: 'N/A' },
         // Guarniciones
         { id: 'g1', name: 'Papas Fritas Porción', price: 5000, category: Category.Guarniciones, shift: 'night', imageUrls: [friesImage], description: '', ingredients: [], prepTime: 'N/A' },
+
+        // === BEBIDAS (BOTH SHIFTS) ===
+        { id: 'b1', name: 'Coca chica', price: 2500, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b2', name: 'Sprite chica', price: 2500, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b3', name: 'Agua chica', price: 2500, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b4', name: 'Coca de litro', price: 3500, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b5', name: 'Sprite de litro', price: 3500, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b6', name: 'Fanta de litro', price: 3500, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b7', name: 'Coca 1 1/2 Lts vidrio', price: 4500, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b8', name: 'Coca 1 1/2 Lts Descartable', price: 5000, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b9', name: 'Pepsi 1 1/2 Lts', price: 4000, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b10', name: 'Mirinda 1 1/2 Lts', price: 4000, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b11', name: 'Paso de los Toros 1 1/2 Lts', price: 4000, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b12', name: '7UP 1 1/2 Lts', price: 4000, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b13', name: 'Aquarius 1 1/2 Lts', price: 4500, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b14', name: 'Agua Mineral 1 1/2 Lts', price: 3000, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b15', name: 'Corona Lata', price: 4500, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b16', name: 'Quilmes Lata', price: 3000, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b17', name: 'Brahma Lata', price: 3000, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b18', name: 'Budweiser Lata', price: 3500, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b19', name: 'Andes Lata', price: 3000, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b20', name: 'Budweiser 1Lts', price: 5500, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b21', name: 'Quilmes 1Lts', price: 5000, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
+        { id: 'b22', name: 'Brahma 1Lts', price: 5000, category: Category.Bebidas, shift: 'both', imageUrls: [bebidaImage], description: '', ingredients: [], prepTime: 'N/A' },
       ];
 
       // --- COMPONENTS ---
@@ -203,22 +228,24 @@
         );
       };
 
-      const Header = ({ cartItemCount, onCartClick, onAboutClick }) => {
+      const Header = ({ cartItemCount, onCartClick, onAboutClick, onCreditClick }) => {
         return (
           <header className="bg-brand-header sticky top-0 z-40 flex-shrink-0 shadow-md">
             <div className="container mx-auto px-4 py-2 flex items-center justify-between">
               <div className="w-10">
-                <button onClick={onAboutClick} className="text-brand-text p-2 rounded-full hover:bg-black/10 transition-colors" aria-label="Sobre Nosotros">
+                <button onClick={onCreditClick} className="text-brand-text p-2 rounded-full hover:bg-black/10 transition-colors" aria-label="Créditos de la aplicación">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </button>
               </div>
-              <img 
-                src="https://ia902909.us.archive.org/18/items/rocola-logo-png-03/rocola%20logo%20png-03.png" 
-                alt="La Rocola Logo" 
-                className="h-14 w-auto" 
-              />
+              <button onClick={onAboutClick} className="focus:outline-none focus:ring-4 focus:ring-brand-accent/50 rounded-md" aria-label="Sobre Nosotros">
+                <img 
+                  src="https://ia902909.us.archive.org/18/items/rocola-logo-png-03/rocola%20logo%20png-03.png" 
+                  alt="La Rocola Logo" 
+                  className="h-14 w-auto" 
+                />
+              </button>
               <div className="relative w-10">
                 <button onClick={onCartClick} className="relative text-brand-text p-2 rounded-full hover:bg-black/10 transition-colors" aria-label={`Ver carrito de compras con ${cartItemCount} artículos`}>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -276,14 +303,14 @@
             role="button"
             aria-label={`Ver detalles de ${item.name}`}
           >
-            <div className="w-1/3 flex-shrink-0">
+            <div className="w-1/6 flex-shrink-0">
               <img
                 src={item.imageUrls[0]}
                 alt={item.name}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
             </div>
-            <div className="p-3 sm:p-4 flex flex-col flex-grow w-2/3">
+            <div className="p-3 sm:p-4 flex flex-col flex-grow w-5/6 min-w-0">
               <h3 className="text-md sm:text-lg font-bold text-brand-text mb-1">{item.name}</h3>
               <div className="flex justify-between items-center mt-auto">
                 {item.price > 0 && <span className="text-md sm:text-lg font-bold text-brand-accent">{formatPrice(item.price)}</span>}
@@ -292,17 +319,15 @@
                   <div className="flex items-center gap-2">
                     <button 
                       onClick={(e) => handleAddClick(e, 'half')} 
-                      className="bg-brand-accent text-white hover:bg-orange-700 transition-colors shadow-md px-3 py-2 rounded-lg text-xs sm:text-sm font-bold disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-500" 
+                      className="bg-brand-accent text-white hover:bg-orange-700 transition-colors shadow-md px-3 py-2 rounded-lg text-xs sm:text-sm font-bold" 
                       aria-label={isPizza ? `Agregar media ${item.name} al carrito` : `Agregar media docena de ${item.name} al carrito`}
-                      disabled={!isStoreOpen}
                     >
                       {isPizza ? 'Mitad' : 'Media'}
                     </button>
                     <button 
                       onClick={(e) => handleAddClick(e, 'full')} 
-                      className="bg-brand-accent text-white hover:bg-orange-700 transition-colors shadow-md px-4 py-2 rounded-lg text-sm font-bold disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-500" 
+                      className="bg-brand-accent text-white hover:bg-orange-700 transition-colors shadow-md px-4 py-2 rounded-lg text-sm font-bold" 
                       aria-label={isPizza ? `Agregar ${item.name} entera al carrito` : `Agregar una docena de ${item.name} al carrito`}
-                      disabled={!isStoreOpen}
                     >
                       {isPizza ? 'Entera' : 'Docena'}
                     </button>
@@ -310,9 +335,8 @@
                 ) : (
                   <button 
                     onClick={handleAddClick} 
-                    className="bg-brand-accent text-white hover:bg-orange-700 transition-colors shadow-lg p-2 rounded-full disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-500" 
+                    className="bg-brand-accent text-white hover:bg-orange-700 transition-colors shadow-lg p-2 rounded-full" 
                     aria-label={`Agregar ${item.name} al carrito`}
-                    disabled={!isStoreOpen}
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
@@ -488,8 +512,8 @@
                       <span className="text-xl font-bold text-brand-text w-8 text-center">{quantity}</span>
                       <button onClick={() => setQuantity(q => q + 1)} className="text-brand-accent text-2xl font-bold w-8 h-8 rounded-md hover:bg-stone-300/50">+</button>
                     </div>
-                    <button onClick={handleAddToCart} className="flex-1 bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 transition-colors duration-300 flex items-center justify-center gap-2 text-lg disabled:bg-red-600 disabled:cursor-not-allowed" disabled={!isStoreOpen}>
-                      {isStoreOpen ? `Agregar ${formatPrice(item.price * quantity)}` : 'Cerrado'}
+                    <button onClick={handleAddToCart} className="flex-1 bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 transition-colors duration-300 flex items-center justify-center gap-2 text-lg">
+                      {`Agregar ${formatPrice(item.price * quantity)}`}
                     </button>
                   </div>
                 </div>
@@ -551,13 +575,13 @@
               
               {cart.length > 0 && (
                 <div className="p-4 border-t border-stone-300 space-y-3">
-                    {!isStoreOpen && <p className="text-sm text-red-600 font-semibold text-center pb-2">No se pueden realizar pedidos en este momento.</p>}
+                    {!isStoreOpen && <p className="text-sm text-red-600 font-semibold text-center pb-2">El local está cerrado. Tu pedido se preparará cuando abramos.</p>}
                     <div className="flex justify-between text-brand-text">
                         <span>Subtotal</span>
                         <span className="font-semibold">{formatPrice(subtotal)}</span>
                     </div>
                      <p className="text-xs text-brand-text-light text-center mt-2">El costo de envío dependerá de la distancia.</p>
-                    <button onClick={onCheckout} className="w-full mt-2 bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 transition-colors duration-300 text-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-500" disabled={!isStoreOpen}>
+                    <button onClick={onCheckout} className="w-full mt-2 bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 transition-colors duration-300 text-lg">
                       Continuar Compra
                     </button>
                 </div>
@@ -672,15 +696,60 @@
                   <span className="font-semibold text-brand-text">Total a pagar:</span>
                   <span className="font-bold text-brand-accent">{formatPrice(total)}</span>
                 </div>
-                <button type="submit" form="checkout-form" className="w-full bg-green-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 flex items-center justify-center gap-2 text-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-red-600" disabled={isFormInvalid || !isStoreOpen}>
-                    {isStoreOpen && <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.267.651 4.39 1.88 6.166l-1.29 4.721 4.793-1.267zM8.348 7.119c-.095-.334-.447-.404-.638-.41a.53.53 0 00-.546.54c0 1.563 1.258 3.12 1.43 3.31.171.191 2.392 3.844 5.86 5.166 2.949 1.111 3.585 1.023 4.104.975.597-.055 1.815-.742 2.067-1.44.252-.699.252-1.293.176-1.44-.076-.147-.27-.223-.546-.381-.275-.156-1.815-.891-2.096-1.001-.28-.11-.481-.157-.678.156-.196.313-.791.996-.97 1.206-.181.21-.362.235-.638.077-.276-.157-1.16-0.428-2.204-1.359-1.603-1.026-2.69-2.277-2.887-2.67-.196-.394-.012-.611.139-.757.135-.131.299-.219.423-.339.124-.121.187-.21.28-.352.093-.142.049-.26-.004-.374-.053-.114-.482-1.155-.658-1.587z"/></svg>}
-                    {isStoreOpen ? 'Realizar Pedido por WhatsApp' : 'Cerrado'}
+                <button type="submit" form="checkout-form" className="w-full bg-green-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 flex items-center justify-center gap-2 text-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-500" disabled={isFormInvalid}>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.267.651 4.39 1.88 6.166l-1.29 4.721 4.793-1.267zM8.348 7.119c-.095-.334-.447-.404-.638-.41a.53.53 0 00-.546.54c0 1.563 1.258 3.12 1.43 3.31.171.191 2.392 3.844 5.86 5.166 2.949 1.111 3.585 1.023 4.104.975.597-.055 1.815-.742 2.067-1.44.252-.699.252-1.293.176-1.44-.076-.147-.27-.223-.546-.381-.275-.156-1.815-.891-2.096-1.001-.28-.11-.481-.157-.678.156-.196.313-.791.996-.97 1.206-.181.21-.362.235-.638.077-.276-.157-1.16-0.428-2.204-1.359-1.603-1.026-2.69-2.277-2.887-2.67-.196-.394-.012-.611.139-.757.135-.131.299-.219.423-.339.124-.121.187-.21.28-.352.093-.142.049-.26-.004-.374-.053-.114-.482-1.155-.658-1.587z"/></svg>
+                    Realizar Pedido por WhatsApp
                 </button>
             </div>
           </div>
         );
       };
       
+      const CreditModal = ({ isOpen, onClose }) => {
+        useEffect(() => {
+          if(isOpen) {
+            document.body.style.overflow = 'hidden';
+            const handleEsc = (event) => {
+                if (event.key === 'Escape') onClose();
+            };
+            window.addEventListener('keydown', handleEsc);
+            return () => window.removeEventListener('keydown', handleEsc);
+          } else {
+            document.body.style.overflow = 'auto';
+          }
+        }, [isOpen, onClose]);
+
+        if (!isOpen) return null;
+
+        return (
+          <div className={`fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={onClose} role="dialog" aria-modal="true">
+            <div className={`bg-brand-card rounded-lg shadow-xl w-full max-w-sm p-6 text-center transform transition-transform duration-300 relative ${isOpen ? 'scale-100' : 'scale-95'}`} onClick={e => e.stopPropagation()}>
+              <button onClick={onClose} className="absolute top-2 right-2 p-2 rounded-full hover:bg-stone-200/80 transition-colors" aria-label="Cerrar">
+                  <svg className="w-5 h-5 text-brand-text" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
+              <img 
+                src="https://ia600902.us.archive.org/5/items/presentacion-para-el-portafolio/Presentaci%C3%B3n%20para%20el%20portafolio.png" 
+                alt="GuAh! Estudio Creativo y Cuarto Menguante" 
+                className="w-40 h-auto mx-auto mb-4"
+              />
+              <p className="text-brand-text text-lg mb-4">App creada por <span className="font-bold">GuAh! Estudio Creativo</span> en conjunto con <span className="font-bold">Cuarto Menguante</span>.</p>
+              <div className="flex justify-center items-center gap-4 mt-4">
+                <a href="https://wa.me/5493644921028" target="_blank" rel="noopener noreferrer" className="transition-transform hover:scale-110">
+                  <img src="https://dn721501.ca.archive.org/0/items/presentacion-para-el-portafolio/Presentaci%C3%B3n%20para%20el%20portafolio-21.png" alt="WhatsApp" className="w-10 h-10"/>
+                </a>
+                <a href="https://www.instagram.com/somosguah/" target="_blank" rel="noopener noreferrer" className="transition-transform hover:scale-110">
+                  <img src="https://dn721501.ca.archive.org/0/items/presentacion-para-el-portafolio/Presentaci%C3%B3n%20para%20el%20portafolio-22.png" alt="Instagram" className="w-10 h-10"/>
+                </a>
+              </div>
+              <div className="text-center text-xs text-brand-text-light mt-4">
+                <p>Pcia. R. Sáenz Peña - Chaco - Argentina</p>
+                <p>Todos los derechos reservados</p>
+              </div>
+            </div>
+          </div>
+        );
+      };
+
       const AboutUsView = ({ isOpen, onClose }) => {
         useEffect(() => {
           if(isOpen) {
@@ -840,8 +909,8 @@
               )}
 
               <div className="flex flex-col gap-3 pt-2">
-                 <button onClick={handleConfirmClick} className="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 transition-colors duration-300 flex items-center justify-center gap-2 text-lg disabled:bg-red-600 disabled:cursor-not-allowed" disabled={!isStoreOpen}>
-                  {isStoreOpen ? `Agregar (${formatPrice(pricePerUnit * (isHalf ? 1 : quantity))})` : 'Cerrado'}
+                 <button onClick={handleConfirmClick} className="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 transition-colors duration-300 flex items-center justify-center gap-2 text-lg">
+                  {`Agregar (${formatPrice(pricePerUnit * (isHalf ? 1 : quantity))})`}
                 </button>
                 <button onClick={onClose} className="w-full bg-stone-400 text-white font-bold py-2 px-4 rounded-lg hover:bg-stone-500 transition-colors duration-300 text-base">
                   Cancelar
@@ -948,6 +1017,7 @@
         const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
         const [isOrderSuccess, setIsOrderSuccess] = useState(false);
         const [isAboutOpen, setIsAboutOpen] = useState(false);
+        const [isCreditModalOpen, setIsCreditModalOpen] = useState(false);
         const [itemToAdd, setItemToAdd] = useState(null);
         const [activeShift, setActiveShift] = useState('night');
         const [storeStatus, setStoreStatus] = useState(getStoreStatus(activeShift));
@@ -1141,6 +1211,7 @@
               cartItemCount={cartItemCount} 
               onCartClick={() => setIsCartOpen(true)} 
               onAboutClick={() => setIsAboutOpen(true)}
+              onCreditClick={() => setIsCreditModalOpen(true)}
             />
             <ShiftNav activeShift={activeShift} onShiftChange={setActiveShift} />
             <StoreStatusBanner status={storeStatus} />
@@ -1185,6 +1256,10 @@
             <AboutUsView 
               isOpen={isAboutOpen}
               onClose={() => setIsAboutOpen(false)}
+            />
+            <CreditModal
+              isOpen={isCreditModalOpen}
+              onClose={() => setIsCreditModalOpen(false)}
             />
             <AddToCartModal 
               itemInfo={itemToAdd}
