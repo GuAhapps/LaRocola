@@ -580,7 +580,7 @@
                         <span>Subtotal</span>
                         <span className="font-semibold">{formatPrice(subtotal)}</span>
                     </div>
-                     <p className="text-xs text-brand-text-light text-center mt-2">El costo de envío dependerá de la distancia.</p>
+                     <p className="text-xs text-brand-text-light text-center mt-2">Costo de envío a domicilio: {formatPrice(1500)}.</p>
                     <button onClick={onCheckout} className="w-full mt-2 bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 transition-colors duration-300 text-lg">
                       Continuar Compra
                     </button>
@@ -595,7 +595,8 @@
         const [formData, setFormData] = useState({ name: '', address: '', phone: '' });
         const [deliveryMethod, setDeliveryMethod] = useState('pickup');
 
-        const total = subtotal;
+        const SHIPPING_COST = 1500;
+        const total = deliveryMethod === 'delivery' ? subtotal + SHIPPING_COST : subtotal;
         
         useEffect(() => {
           if (isOpen) {
@@ -677,7 +678,7 @@
                       <input type="radio" name="deliveryMethod" value="delivery" checked={deliveryMethod === 'delivery'} onChange={(e) => setDeliveryMethod(e.target.value)} className="w-5 h-5 text-brand-accent focus:ring-brand-accent focus:ring-2"/>
                       <div className="ml-3">
                         <span className="font-semibold text-brand-text">Envío a domicilio</span>
-                        <p className="text-sm text-brand-text-light">El costo de envío dependerá de la distancia.</p>
+                        <p className="text-sm text-brand-text-light">Costo fijo de {formatPrice(SHIPPING_COST)}.</p>
                       </div>
                     </label>
                   </div>
@@ -691,12 +692,22 @@
                 )}
               </form>
             </div>
-            <div className="flex-shrink-0 p-4 bg-brand-bg/80 backdrop-blur-sm border-t border-stone-300">
-                <div className="flex justify-between items-center mb-4 text-xl">
-                  <span className="font-semibold text-brand-text">Total a pagar:</span>
-                  <span className="font-bold text-brand-accent">{formatPrice(total)}</span>
+            <div className="flex-shrink-0 p-4 bg-brand-bg/80 backdrop-blur-sm border-t border-stone-300 space-y-2">
+                <div className="flex justify-between text-lg">
+                    <span className="text-brand-text-light">Subtotal</span>
+                    <span className="font-semibold text-brand-text">{formatPrice(subtotal)}</span>
                 </div>
-                <button type="submit" form="checkout-form" className="w-full bg-green-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 flex items-center justify-center gap-2 text-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-500" disabled={isFormInvalid}>
+                {deliveryMethod === 'delivery' && (
+                    <div className="flex justify-between text-lg">
+                        <span className="text-brand-text-light">Costo de Envío</span>
+                        <span className="font-semibold text-brand-text">{formatPrice(SHIPPING_COST)}</span>
+                    </div>
+                )}
+                <div className="flex justify-between items-center text-xl pt-2 border-t border-stone-300 mt-2">
+                    <span className="font-bold text-brand-text">Total a pagar:</span>
+                    <span className="font-bold text-brand-accent">{formatPrice(total)}</span>
+                </div>
+                <button type="submit" form="checkout-form" className="w-full bg-green-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 flex items-center justify-center gap-2 text-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-500 mt-2" disabled={isFormInvalid}>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.267.651 4.39 1.88 6.166l-1.29 4.721 4.793-1.267zM8.348 7.119c-.095-.334-.447-.404-.638-.41a.53.53 0 00-.546.54c0 1.563 1.258 3.12 1.43 3.31.171.191 2.392 3.844 5.86 5.166 2.949 1.111 3.585 1.023 4.104.975.597-.055 1.815-.742 2.067-1.44.252-.699.252-1.293.176-1.44-.076-.147-.27-.223-.546-.381-.275-.156-1.815-.891-2.096-1.001-.28-.11-.481-.157-.678.156-.196.313-.791.996-.97 1.206-.181.21-.362.235-.638.077-.276-.157-1.16-0.428-2.204-1.359-1.603-1.026-2.69-2.277-2.887-2.67-.196-.394-.012-.611.139-.757.135-.131.299-.219.423-.339.124-.121.187-.21.28-.352.093-.142.049-.26-.004-.374-.053-.114-.482-1.155-.658-1.587z"/></svg>
                     Realizar Pedido por WhatsApp
                 </button>
@@ -1103,6 +1114,7 @@
         const handleConfirmOrder = (orderData) => {
           const { customer, deliveryMethod, total } = orderData;
           const { name, phone, address } = customer;
+          const SHIPPING_COST = 1500;
 
           let message = `*Nuevo pedido de la APP*\n\n`;
           message += `*Turno: ${activeShift === 'midday' ? 'Medio Día' : 'Noche'}*\n\n`;
@@ -1180,18 +1192,17 @@
           // --- End of cart processing ---
 
           message += `\n`;
-
-          message += `Subtotal ${formatPrice(cartSubtotal)}\n\n`;
+          message += `*Subtotal:* ${formatPrice(cartSubtotal)}\n`;
 
           if (deliveryMethod === 'delivery') {
+            message += `*Costo de Envío:* ${formatPrice(SHIPPING_COST)}\n`;
             message += `*Método de entrega:* Envío a domicilio\n`;
             message += `*Dirección:* ${address}\n\n`;
           } else {
             message += `*Método de entrega:* Retira en el local\n\n`;
           }
 
-          const totalLabel = deliveryMethod === 'delivery' ? 'TOTAL DEL PEDIDO (sin envío)' : 'TOTAL DEL PEDIDO';
-          message += `*${totalLabel}:* *${formatPrice(total)}*`;
+          message += `*TOTAL DEL PEDIDO:* *${formatPrice(total)}*`;
 
           const phoneNumber = "5493644735280";
           const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
